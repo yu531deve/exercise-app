@@ -44,7 +44,7 @@ export default function ExercisePage() {
     <main className="flex flex-col h-screen bg-[#e5ddd5] text-black">
       {/* 上：運動動画 */}
       <div className="flex-1 flex items-center justify-center bg-[#e5ddd5]">
-        <VideoPlayer src="/sample.mp4" />
+        <VideoPlayer src="/780037845.306586.mp4" />
       </div>
 
       {/* 下：キャラクター画像＋声掛け */}
