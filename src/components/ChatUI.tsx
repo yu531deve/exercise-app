@@ -17,9 +17,51 @@ export default function ChatUI({ messages, onSend }: Props) {
     setInput("");
   };
 
+  // リンク検知してカード風に整形
+  const renderMessageText = (text: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/;
+    if (urlRegex.test(text)) {
+      const parts = text.split(urlRegex);
+      return (
+        <div className="flex flex-col gap-2">
+          {/* 本文＋URL */}
+          <div>
+            {parts.map((part, j) =>
+              part.startsWith("http") ? (
+                <span key={j} className="text-blue-600 underline">
+                  {part}
+                </span>
+              ) : (
+                <span key={j}>{part}</span>
+              )
+            )}
+          </div>
+
+          {/* リンクカード風プレビュー */}
+          <div className="rounded-lg overflow-hidden border border-gray-300 bg-white">
+            <img
+              src="/1684472126738.jpeg"
+              alt="リンクプレビュー"
+              className="w-full h-32 object-cover"
+            />
+            <div className="p-2">
+              <p className="text-sm font-semibold text-gray-800">
+                AI Fitness アプリ
+              </p>
+              <p className="text-xs text-gray-500 truncate">
+                健康を楽しく続けるための運動サポートアプリ
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return <span>{text}</span>;
+  };
+
   return (
     <div className="flex flex-col flex-1 w-full bg-gray-100 dark:bg-gray-900">
-      {/* メッセージ一覧（入力欄の高さ分だけ下に余白を確保） */}
+      {/* メッセージ一覧 */}
       <main className="flex-1 overflow-y-auto p-4 space-y-4 pb-20">
         {messages.map((m, i) => {
           const isMine = m.sender === "me";
@@ -41,14 +83,14 @@ export default function ChatUI({ messages, onSend }: Props) {
                     : "bg-white text-black border border-gray-200 rounded-bl-none"
                 }`}
               >
-                {m.text}
+                {renderMessageText(m.text)}
               </div>
             </div>
           );
         })}
       </main>
 
-      {/* 入力欄（常に画面下に固定、ナビゲーションフッターの直上） */}
+      {/* 入力欄 */}
       <footer className="fixed bottom-18 left-0 w-full flex items-center gap-2 border-t bg-white p-3 dark:bg-gray-800">
         <input
           type="text"

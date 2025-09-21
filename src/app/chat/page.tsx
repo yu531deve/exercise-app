@@ -13,7 +13,13 @@ const script: Message[] = [
   { text: "ねえ、おじいちゃん運動ちゃんとしてる？", sender: "other" },
   { text: "最近ちょっとサボり気味かな…。", sender: "me" },
   { text: "だめだよ！一緒に運動がんばろう！", sender: "other" },
+  {
+    text: "👉 運動アプリはこちら！\n" +
+          "https://ai-fitness-app.example.com",
+    sender: "other",
+  },
 ];
+
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -39,9 +45,9 @@ export default function ChatPage() {
   }, [step]);
 
   return (
-    <div className="h-full w-full flex flex-col">
+    <div className="h-full w-full flex flex-col bg-[#E5DDD5]">
+      {/* LINE風チャットUI */}
       <ChatUI messages={messages} onSend={() => {}} />
-      {/* デモ用ヒント */}
     </div>
   );
 }

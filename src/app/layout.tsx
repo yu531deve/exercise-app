@@ -32,7 +32,7 @@ export default function RootLayout({
           <div className="flex-1">{children}</div>
 
           {/* フッターナビ（常に下に固定、SVGアイコン付き） */}
-<nav className="fixed bottom-0 left-0 w-full bg-background-light dark:bg-background-dark border-t border-black/10 dark:border-white/10 shadow-lg">
+<nav className="fixed bottom-0 left-0 w-full bg-white border-t border-black/10 dark:border-white/10 shadow-lg">
   <div className="flex justify-around py-2">
     <a href="/exercise" className="flex flex-col items-center gap-1 p-2 text-primary">
       {/* Exercise アイコン */}

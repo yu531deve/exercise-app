@@ -1,13 +1,27 @@
 "use client";
-type Props = { src: string };
 
-export default function VideoPlayer({ src }: Props) {
+type Props = {
+  src: string;
+  autoPlay?: boolean;
+  controls?: boolean;
+  muted?: boolean;
+};
+
+export default function VideoPlayer({
+  src,
+  autoPlay = true,
+  controls = false,
+  muted = false,
+}: Props) {
   return (
     <video
       src={src}
-      controls
-      autoPlay
-      className="w-full h-full object-contain bg-black"
+      className="w-full h-full object-cover"
+      autoPlay={autoPlay}
+      controls={controls}
+      muted={muted}
+      loop
+      playsInline
     />
   );
 }
